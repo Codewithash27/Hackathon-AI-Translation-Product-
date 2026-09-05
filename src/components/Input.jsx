@@ -5,21 +5,25 @@ const Input = forwardRef(({ label, error, className = '', ...props }, ref) => {
   return (
     <div className={className}>
       {label && (
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-semibold text-gray-700 mb-2">
           {label}
         </label>
       )}
       <input
         ref={ref}
         className={classNames(
-          'block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2 border outline-none transition-colors',
-          error ? 'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500' : 'border-gray-300 text-gray-900',
-          props.disabled ? 'bg-gray-50 text-gray-500' : ''
+          'block w-full rounded-lg border-2 shadow-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-1 sm:text-sm px-4 py-2.5 font-medium',
+          error 
+            ? 'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500' 
+            : 'border-gray-200 text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:ring-indigo-400 hover:border-indigo-300',
+          props.disabled ? 'bg-gray-50 text-gray-500 cursor-not-allowed' : 'bg-white'
         )}
         {...props}
       />
       {error && (
-        <p className="mt-1 text-sm text-red-600">{error}</p>
+        <p className="mt-2 text-sm font-medium text-red-600 flex items-center">
+          <span className="mr-1">⚠️</span>{error}
+        </p>
       )}
     </div>
   );

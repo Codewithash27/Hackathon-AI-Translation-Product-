@@ -80,3 +80,4 @@ No real registration is required. You can use the built-in demo buttons on the l
 ## Note on Backend
 
 This project is a **frontend-only prototype** designed specifically for a hackathon. All data is managed in memory/local files via `mockService.js`. There is no actual backend server, database, or API connected.
+mhh

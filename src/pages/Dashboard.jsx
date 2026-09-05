@@ -20,53 +20,39 @@ export default function Dashboard() {
   const isTeacher = user.role === 'Teacher';
 
   return (
-    <div className="space-y-6 animate-fade-in">
-      <div>
-        <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
-          Welcome back, {user.name}!
+    <div className="space-y-8 animate-fade-in">
+      <div className="space-y-2">
+        <h2 className="text-4xl font-bold text-gray-900">
+          Welcome back, <span className="gradient-text">{user.name}!</span>
         </h2>
-        <p className="mt-1 text-sm text-gray-500">
-          Here's what's happening in your {isTeacher ? 'classes' : 'courses'} today.
+        <p className="text-lg text-gray-600">
+          {isTeacher 
+            ? "Here's what's happening in your classes today." 
+            : "Here's your learning progress for today."}
         </p>
       </div>
       
       {/* Visual flow demo for Hackathon */}
       {isTeacher && (
-        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-100 shadow-sm">
-          <h3 className="text-sm font-semibold text-indigo-800 uppercase tracking-wider mb-4">Innovation Workflow</h3>
-          <div className="flex flex-col md:flex-row items-center justify-between text-center gap-4">
-            <div className="flex-1 bg-white p-3 rounded-lg shadow-sm border border-gray-100">
-              <div className="text-2xl mb-1">📝</div>
-              <div className="text-xs font-medium text-gray-700">English Lesson</div>
-            </div>
-            <div className="hidden md:block text-indigo-300">➔</div>
-            <div className="flex-1 bg-white p-3 rounded-lg shadow-sm border border-gray-100">
-              <div className="text-2xl mb-1">🤖</div>
-              <div className="text-xs font-medium text-gray-700">AI Translation</div>
-            </div>
-            <div className="hidden md:block text-indigo-300">➔</div>
-            <div className="flex-1 bg-white p-3 rounded-lg shadow-sm border border-gray-100 relative">
-              <div className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full">!</div>
-              <div className="text-2xl mb-1">🔍</div>
-              <div className="text-xs font-medium text-gray-700">Terminology Check</div>
-            </div>
-            <div className="hidden md:block text-indigo-300">➔</div>
-            <div className="flex-1 bg-white p-3 rounded-lg shadow-sm border border-gray-100 relative">
-              <div className="absolute -top-2 -right-2 bg-blue-500 text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full">1</div>
-              <div className="text-2xl mb-1">👨‍🏫</div>
-              <div className="text-xs font-medium text-gray-700">Teacher Review</div>
-            </div>
-            <div className="hidden md:block text-indigo-300">➔</div>
-            <div className="flex-1 bg-white p-3 rounded-lg shadow-sm border border-gray-100">
-              <div className="text-2xl mb-1">🌍</div>
-              <div className="text-xs font-medium text-gray-700">Student Learning</div>
-            </div>
+        <div className="premium-card-light p-6 overflow-hidden relative">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full -mr-32 -mt-32 opacity-30"></div>
+          <h3 className="text-sm font-bold text-indigo-900 uppercase tracking-widest mb-6 relative z-10">🚀 Innovation Workflow</h3>
+          <div className="flex flex-col md:flex-row items-center justify-between text-center gap-4 relative z-10">
+            <WorkflowStep icon="📝" label="English Lesson" />
+            <ArrowDivider />
+            <WorkflowStep icon="🤖" label="AI Translation" />
+            <ArrowDivider />
+            <WorkflowStep icon="🔍" label="Terminology Check" notification="!" notificationColor="red" />
+            <ArrowDivider />
+            <WorkflowStep icon="👨‍🏫" label="Teacher Review" notification="1" notificationColor="blue" />
+            <ArrowDivider />
+            <WorkflowStep icon="🌍" label="Student Learning" />
           </div>
         </div>
       )}
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {isTeacher ? (
           <>
             <StatCard title="Total Classes" value={stats.totalClasses} icon="🏫" color="indigo" />
@@ -85,29 +71,36 @@ export default function Dashboard() {
       </div>
 
       {/* Recent Activity */}
-      <div className="bg-white shadow-sm rounded-lg border border-gray-200">
-        <div className="px-4 py-5 border-b border-gray-200 sm:px-6">
-          <h3 className="text-lg leading-6 font-medium text-gray-900">
+      <div className="premium-card-light overflow-hidden">
+        <div className="px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white">
+          <h3 className="text-lg leading-6 font-bold text-gray-900 flex items-center">
+            <span className="text-2xl mr-3">⚡</span>
             Recent Activity
           </h3>
         </div>
-        <ul className="divide-y divide-gray-200">
-          {stats.recentActivity.map((activity) => (
-            <li key={activity.id} className="px-4 py-4 sm:px-6 hover:bg-gray-50 transition-colors">
+        <ul className="divide-y divide-gray-100">
+          {stats.recentActivity.map((activity, index) => (
+            <li 
+              key={activity.id} 
+              className="px-6 py-4 hover:bg-gradient-to-r hover:from-indigo-50 to-purple-50 transition-all duration-300 animate-fade-in"
+              style={{ animationDelay: `${index * 50}ms` }}
+            >
               <div className="flex items-center space-x-4">
-                <div className="flex-shrink-0 text-2xl">
+                <div className="flex-shrink-0 text-3xl">
                   {activity.icon}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900 truncate">
+                  <p className="text-sm font-semibold text-gray-900">
                     {activity.action}
                   </p>
-                  <p className="text-sm text-gray-500 truncate">
+                  <p className="text-sm text-gray-600">
                     {activity.target}
                   </p>
                 </div>
                 <div>
-                  <span className="text-xs text-gray-400">{activity.time}</span>
+                  <span className="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full">
+                    {activity.time}
+                  </span>
                 </div>
               </div>
             </li>
@@ -120,22 +113,54 @@ export default function Dashboard() {
 
 function StatCard({ title, value, icon, color }) {
   const colorMap = {
-    indigo: 'bg-indigo-50 text-indigo-600 border-indigo-100',
-    emerald: 'bg-emerald-50 text-emerald-600 border-emerald-100',
-    amber: 'bg-amber-50 text-amber-600 border-amber-100',
-    blue: 'bg-blue-50 text-blue-600 border-blue-100',
-    purple: 'bg-purple-50 text-purple-600 border-purple-100',
+    indigo: 'from-indigo-500/20 to-indigo-600/20 border-indigo-200 text-indigo-700 shadow-indigo-500/10',
+    emerald: 'from-emerald-500/20 to-emerald-600/20 border-emerald-200 text-emerald-700 shadow-emerald-500/10',
+    amber: 'from-amber-500/20 to-amber-600/20 border-amber-200 text-amber-700 shadow-amber-500/10',
+    blue: 'from-blue-500/20 to-blue-600/20 border-blue-200 text-blue-700 shadow-blue-500/10',
+    purple: 'from-purple-500/20 to-purple-600/20 border-purple-200 text-purple-700 shadow-purple-500/10',
+  };
+
+  const gradientMap = {
+    indigo: 'from-indigo-600 to-indigo-700',
+    emerald: 'from-emerald-600 to-green-700',
+    amber: 'from-amber-600 to-orange-700',
+    blue: 'from-blue-600 to-cyan-700',
+    purple: 'from-purple-600 to-pink-700',
   };
 
   return (
-    <div className={`overflow-hidden rounded-lg border shadow-sm ${colorMap[color]} p-5 transition-transform hover:-translate-y-1`}>
-      <div className="flex items-center">
-        <div className="flex-shrink-0 text-3xl mr-4">{icon}</div>
-        <div>
-          <div className="text-sm font-medium truncate opacity-80">{title}</div>
-          <div className="mt-1 text-2xl font-semibold">{value}</div>
+    <div className={`premium-card-light overflow-hidden group hover:shadow-2xl transition-all duration-300 animate-slide-in`}>
+      <div className={`bg-gradient-to-br ${gradientMap[color]} p-4 text-white`}>
+        <div className="flex items-center justify-between">
+          <div className="text-4xl">{icon}</div>
+          <div className="text-right">
+            <p className="text-xs font-semibold opacity-80 uppercase tracking-wide">{title}</p>
+            <p className="text-3xl font-bold mt-1 group-hover:scale-110 transition-transform">{value}</p>
+          </div>
         </div>
       </div>
     </div>
+  );
+}
+
+function WorkflowStep({ icon, label, notification, notificationColor }) {
+  return (
+    <div className="flex-1 relative">
+      <div className="bg-white p-4 rounded-2xl shadow-md border-2 border-gray-100 hover:shadow-lg hover:border-indigo-300 transition-all duration-300">
+        {notification && (
+          <div className={`absolute -top-3 -right-3 bg-${notificationColor}-500 text-white text-[11px] w-6 h-6 flex items-center justify-center rounded-full font-bold shadow-lg`}>
+            {notification}
+          </div>
+        )}
+        <div className="text-4xl mb-2">{icon}</div>
+        <div className="text-xs font-bold text-gray-700 uppercase tracking-wide">{label}</div>
+      </div>
+    </div>
+  );
+}
+
+function ArrowDivider() {
+  return (
+    <div className="hidden md:flex text-2xl text-indigo-300 font-light">→</div>
   );
 }
