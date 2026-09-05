@@ -40,11 +40,11 @@ export default function Sidebar({ isOpen, setIsOpen }) {
           <div className="flex items-center justify-center h-20 border-b border-slate-700/50 bg-gradient-to-r from-indigo-600/80 via-purple-600/80 to-pink-600/80 backdrop-blur-xl">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-400 to-purple-400 flex items-center justify-center shadow-lg">
-                <span className="text-lg font-bold text-white">B4</span>
+                <span className="text-lg font-bold text-white">CS</span>
               </div>
               <div>
-                <span className="text-white text-lg font-bold tracking-tight">B4One</span>
-                <div className="text-xs text-indigo-200 font-medium">Class</div>
+                <span className="text-white text-lg font-bold tracking-tight">ClassSync</span>
+                <div className="text-xs text-indigo-200 font-medium">Pro</div>
               </div>
             </div>
           </div>

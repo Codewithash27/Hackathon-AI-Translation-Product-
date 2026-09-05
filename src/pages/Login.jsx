@@ -33,16 +33,16 @@ export default function Login() {
 
   const handleDemoLogin = (role) => {
     if (role === 'teacher') {
-      setEmail('teacher@b4one.com');
+      setEmail('teacher@classsync.com');
       setPassword('teacher123');
     } else {
-      setEmail('student@b4one.com');
+      setEmail('student@classsync.com');
       setPassword('student123');
     }
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-50 to-blue-50 flex items-center justify-center px-4 py-8">
       {/* Animated background elements */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
@@ -50,31 +50,26 @@ export default function Login() {
         <div className="absolute -bottom-8 left-1/2 w-96 h-96 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
 
-      <div className="sm:mx-auto sm:w-full sm:max-w-md text-center z-10">
-        <div className="mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 shadow-lg shadow-indigo-500/30">
-            <span className="text-2xl font-bold text-white">B4</span>
+      <div className="w-full max-w-md z-10">
+        {/* Header - Compact */}
+        <div className="text-center mb-5">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 shadow-lg shadow-indigo-500/30 mb-3">
+            <span className="text-xl font-bold text-white">CS</span>
           </div>
+          <h2 className="text-3xl font-bold tracking-tight mb-1">
+            <span className="gradient-text">ClassSync</span>
+          </h2>
+          <p className="text-xs text-gray-600">One Class. Five Languages.</p>
         </div>
-        <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-2">
-          <span className="gradient-text">B4One Class</span>
-        </h2>
-        <p className="mt-3 text-lg text-gray-700 font-semibold">
-          One Class. Five Languages.
-        </p>
-        <p className="mt-2 text-sm text-gray-600">
-          Teach once. Learn anywhere. Anytime.
-        </p>
-      </div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-md z-10">
-        <div className="premium-card-light py-8 px-6 sm:px-10 animate-slide-in">
+        {/* Card - Compact */}
+        <div className="premium-card-light py-6 px-6 animate-slide-in">
           
           <ErrorMessage message={error} />
 
-          <form className="space-y-5 mt-6" onSubmit={handleSubmit}>
+          <form className="space-y-4 mt-4" onSubmit={handleSubmit}>
             <Input
-              label="Email address"
+              label="Email"
               type="email"
               required
               value={email}
@@ -91,41 +86,32 @@ export default function Login() {
               placeholder="••••••••"
             />
 
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 text-indigo-600 focus:ring-2 focus:ring-indigo-500 border-gray-300 rounded transition-colors"
-                />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700 font-medium">
-                  Remember me
-                </label>
-              </div>
+            <div className="flex items-center">
+              <input
+                id="remember-me"
+                name="remember-me"
+                type="checkbox"
+                className="h-4 w-4 text-indigo-600 focus:ring-2 focus:ring-indigo-500 border-gray-300 rounded transition-colors"
+              />
+              <label htmlFor="remember-me" className="ml-2 block text-xs text-gray-700 font-medium">
+                Remember me
+              </label>
             </div>
 
-            <Button type="submit" className="w-full text-base font-semibold py-2.5" isLoading={loading}>
-              {loading ? 'Signing in...' : 'Sign in'}
+            <Button type="submit" className="w-full text-sm font-semibold py-2.5" isLoading={loading}>
+              {loading ? 'Signing in...' : 'Sign In'}
             </Button>
           </form>
 
-          <div className="mt-7">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-200" />
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-3 bg-white text-gray-600 font-medium text-xs uppercase tracking-wide">Demo Access</span>
-              </div>
-            </div>
-
-            <div className="mt-6 grid grid-cols-2 gap-3">
+          {/* Demo Section - Inline */}
+          <div className="mt-4 pt-4 border-t border-gray-200">
+            <p className="text-xs text-center text-gray-600 font-medium mb-3 uppercase tracking-wide">Quick Demo</p>
+            <div className="grid grid-cols-2 gap-2">
               <Button 
                 type="button" 
                 variant="secondary" 
                 onClick={() => handleDemoLogin('teacher')}
-                className="text-sm font-semibold py-2"
+                className="text-xs font-semibold py-2"
               >
                 👨‍🏫 Teacher
               </Button>
@@ -133,18 +119,19 @@ export default function Login() {
                 type="button" 
                 variant="secondary" 
                 onClick={() => handleDemoLogin('student')}
-                className="text-sm font-semibold py-2"
+                className="text-xs font-semibold py-2"
               >
                 👨‍🎓 Student
               </Button>
             </div>
           </div>
           
-          <div className="mt-7 text-center">
-            <p className="text-sm text-gray-700">
+          {/* Footer - Compact */}
+          <div className="mt-4 text-center">
+            <p className="text-xs text-gray-600">
               Don't have an account?{' '}
               <Link to="/register" className="font-semibold text-indigo-600 hover:text-indigo-700 transition-colors">
-                Register here
+                Register
               </Link>
             </p>
           </div>

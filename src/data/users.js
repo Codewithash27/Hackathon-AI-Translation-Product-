@@ -2,7 +2,7 @@ export const users = [
   {
     id: 1,
     name: 'Demo Teacher',
-    email: 'teacher@b4one.com',
+    email: 'teacher@classsync.com',
     password: 'teacher123',
     role: 'Teacher',
     avatar: null,
@@ -11,7 +11,7 @@ export const users = [
   {
     id: 2,
     name: 'Demo Student',
-    email: 'student@b4one.com',
+    email: 'student@classsync.com',
     password: 'student123',
     role: 'Student',
     avatar: null,
