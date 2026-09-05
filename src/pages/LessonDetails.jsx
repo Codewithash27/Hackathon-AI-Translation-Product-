@@ -38,10 +38,11 @@ export default function LessonDetails() {
   let activeContent = lesson.content;
   
   if (currentLang !== 'en') {
-    // Only students see Published, Teachers see anything
+    // Only students see Published translations, Teachers see all statuses
+    const publishedStatuses = ['Published', 'Reviewed'];
     const availableTranslations = isTeacher 
       ? translations 
-      : translations.filter(t => t.status === 'Published');
+      : translations.filter(t => publishedStatuses.includes(t.status));
       
     const translation = availableTranslations.find(t => t.language === currentLang);
     
